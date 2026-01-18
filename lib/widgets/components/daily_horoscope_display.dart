@@ -33,6 +33,19 @@ class HoroscopeDisplayState extends State<HoroscopeDisplay> {
         horoscopeDisplay = MonthlyDisplay(sign: widget.sign);
     }
 
-    return horoscopeDisplay;
+    return Column(
+      children: [
+        SegmentedButton(
+          segments: [
+            ButtonSegment(value: HoroscopeType.daily, label: Text("Daily"), icon: Icon(Icons.calendar_today_outlined)),
+            ButtonSegment(value: HoroscopeType.weekly, label: Text("Weekly"), icon: Icon(Icons.date_range_outlined)),
+            ButtonSegment(value: HoroscopeType.monthly, label: Text("Monthly"), icon: Icon(Icons.calendar_month_outlined))
+          ], 
+          selected: {horoscopeType}, //{} means Set, SegmentedButton puts everything into Set to be flexible for single, multi or zero select.
+          onSelectionChanged: (newSelection) => setState(() => horoscopeType = newSelection.first),
+        ),
+        horoscopeDisplay
+      ],
+    );
   }
 }
