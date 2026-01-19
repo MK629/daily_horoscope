@@ -1,3 +1,4 @@
+import 'package:daily_horoscope/fetcher/fetcher.dart';
 import 'package:daily_horoscope/types/horoscope_types.dart';
 import 'package:daily_horoscope/types/signs.dart';
 import 'package:flutter/material.dart';
@@ -13,15 +14,28 @@ class DailyDisplay extends StatefulWidget {
 
 class _DailyDisplayState extends State<DailyDisplay> {
   final HoroscopeType horoscopeType = HoroscopeType.daily;
+  late Future<DisplayDTO> display;
 
   @override
   void initState() {
-    // TODO: implement api call here...
     super.initState();
+    display = fetchData(widget.sign, horoscopeType);
   }
 
   @override
   Widget build(BuildContext context){
-    return Text("Daily horoscope for ${widget.sign.name}");
+    return FutureBuilder(
+      future: display, 
+      builder: (context, snapshot){
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return CircularProgressIndicator();
+        }
+        else if(snapshot.connectionState == ConnectionState.none){
+          return Text("Unable to connect...");
+        }
+        DailyDisplayDTO display = snapshot.data as DailyDisplayDTO? ?? nullFallbackDaily();
+        return Text(display.horoscope_data);
+      },
+    );
   }
 }
