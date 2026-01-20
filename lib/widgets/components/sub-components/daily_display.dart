@@ -30,9 +30,6 @@ class _DailyDisplayState extends State<DailyDisplay> {
         if(snapshot.connectionState == ConnectionState.waiting){
           return CircularProgressIndicator();
         }
-        else if(snapshot.connectionState == ConnectionState.none){
-          return Text("Unable to connect...");
-        }
         DailyDisplayDTO display = snapshot.data as DailyDisplayDTO? ?? nullFallbackDaily();
         return Text(display.horoscope_data);
       },

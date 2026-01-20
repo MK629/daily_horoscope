@@ -10,7 +10,7 @@ Future<DisplayDTO> fetchData(Sign sign, HoroscopeType horoscopeType) async {
   if(response.statusCode == 200){
     final responseBody = jsonDecode(response.body) as Map<String, dynamic>;
     final responseData = responseBody["data"] as Map<String, dynamic>;
-    return makeDisplayFromJson(horoscopeType, responseData);
+    return DisplayDTO.FromJson(horoscopeType, responseData);
   }
   else{
     throw Exception(response.statusCode);

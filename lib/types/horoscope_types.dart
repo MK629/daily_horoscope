@@ -9,6 +9,28 @@ class DisplayDTO{
   final String horoscope_data;
 
   const DisplayDTO({required this.horoscope_data});
+
+  factory DisplayDTO.FromJson(HoroscopeType horoscopeType, Map<String, dynamic> json){
+    switch(horoscopeType){
+      case HoroscopeType.daily:
+        return DailyDisplayDTO(
+          date: json["date"] as String? ?? 'unknown', 
+          horoscope_data: json["horoscope_data"] as String? ?? 'unknown'
+        );
+      case HoroscopeType.weekly:
+        return WeeklyDisplayDTO(
+          week: json["week"] as String? ?? 'unknown', 
+          horoscope_data: json["horoscope_data"] as String? ?? 'unknown'
+        );
+      case HoroscopeType.monthly:
+        return MonthlyDisplayDTO(
+          challenging_days: json["challenging_days"] as String? ?? 'unknown', 
+          month: json["month"] as String? ?? 'unknown', 
+          standout_days: json["standout_days"] as String? ?? 'unknown', 
+          horoscope_data: json["horoscope_data"] as String? ?? 'unknown'
+        );
+    }
+  }
 }
 
 class DailyDisplayDTO extends DisplayDTO{
@@ -29,28 +51,6 @@ class MonthlyDisplayDTO extends DisplayDTO{
   final String standout_days;
 
   const MonthlyDisplayDTO( { required this.challenging_days, required this.month, required this.standout_days, required super.horoscope_data});
-}
-
-DisplayDTO makeDisplayFromJson(HoroscopeType horoscopeType, Map<String, dynamic> json){
-  switch(horoscopeType){
-    case HoroscopeType.daily:
-      return DailyDisplayDTO(
-        date: json["date"] as String? ?? 'Null', 
-        horoscope_data: json["horoscope_data"] as String? ?? 'Null'
-      );
-    case HoroscopeType.weekly:
-      return WeeklyDisplayDTO(
-        week: json["week"] as String? ?? 'Null', 
-        horoscope_data: json["horoscope_data"] as String? ?? 'Null'
-      );
-    case HoroscopeType.monthly:
-      return MonthlyDisplayDTO(
-        challenging_days: json["challenging_days"] as String? ?? 'Null', 
-        month: json["month"] as String, 
-        standout_days: json["standout_days"] as String? ?? 'Null', 
-        horoscope_data: json["horoscope_data"] as String? ?? 'Null'
-      );
-  }
 }
 
 DailyDisplayDTO nullFallbackDaily() => DailyDisplayDTO(date: "Null", horoscope_data: "Null");
