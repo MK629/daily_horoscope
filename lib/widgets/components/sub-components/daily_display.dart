@@ -1,6 +1,7 @@
 import 'package:daily_horoscope/fetcher/fetcher.dart';
 import 'package:daily_horoscope/types/horoscope_types.dart';
 import 'package:daily_horoscope/types/signs.dart';
+import 'package:daily_horoscope/widgets/components/sub-components/scrollable_text_display.dart';
 import 'package:flutter/material.dart';
 
 class DailyDisplay extends StatefulWidget {
@@ -23,6 +24,15 @@ class _DailyDisplayState extends State<DailyDisplay> {
   }
 
   @override
+  void didUpdateWidget(covariant DailyDisplay oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if(oldWidget.sign != widget.sign){
+      display = fetchData(widget.sign, horoscopeType);
+    }
+  }
+
+  @override
   Widget build(BuildContext context){
     return FutureBuilder(
       future: display, 
@@ -31,7 +41,8 @@ class _DailyDisplayState extends State<DailyDisplay> {
           return CircularProgressIndicator();
         }
         DailyDisplayDTO display = snapshot.data as DailyDisplayDTO? ?? nullFallbackDaily();
-        return Text(display.horoscope_data);
+        
+        return scrollableText(display.horoscope_data);
       },
     );
   }

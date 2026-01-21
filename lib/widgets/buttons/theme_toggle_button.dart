@@ -2,8 +2,9 @@ import 'package:daily_horoscope/contexts/theme_context.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+//Use later maybe
 class ThemeToggleButton extends StatelessWidget {
-const ThemeToggleButton({ super.key });
+  const ThemeToggleButton({ super.key });
 
   @override
   Widget build(BuildContext context){

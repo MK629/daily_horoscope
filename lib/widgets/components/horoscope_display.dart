@@ -27,13 +27,17 @@ class HoroscopeDisplayState extends State<HoroscopeDisplay> {
     switch(horoscopeType){
       case HoroscopeType.daily:
         horoscopeDisplay = DailyDisplay(sign: widget.sign);
+      break;
       case HoroscopeType.weekly:
         horoscopeDisplay = WeeklyDisplay(sign: widget.sign);
+      break;
       case HoroscopeType.monthly:
         horoscopeDisplay = MonthlyDisplay(sign: widget.sign);
+      break;
     }
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         SegmentedButton(
           segments: [

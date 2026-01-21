@@ -2,7 +2,7 @@ import 'package:daily_horoscope/types/signs.dart';
 import 'package:flutter/material.dart';
 
 class SignContext extends ChangeNotifier{
-  Sign sign = Sign.Aries;
+  Sign sign = Sign.Aquarius;
 
   Sign get getSign => sign;
 
