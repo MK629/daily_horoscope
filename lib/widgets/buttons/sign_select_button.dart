@@ -1,5 +1,6 @@
 import 'package:daily_horoscope/contexts/sign_context.dart';
 import 'package:daily_horoscope/types/signs.dart';
+import 'package:daily_horoscope/widgets/common_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,7 @@ class SignSelectButton extends StatelessWidget {
             )
           )
         ),
-        backgroundColor: WidgetStatePropertyAll(const Color.fromARGB(255, 7, 13, 46))
+        backgroundColor: WidgetStatePropertyAll(commonTextBgColour())
       ),
       onPressed: () => showModalBottomSheet(
         context: context, 

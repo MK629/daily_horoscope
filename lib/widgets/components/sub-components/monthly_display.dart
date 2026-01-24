@@ -1,6 +1,7 @@
 import 'package:daily_horoscope/fetcher/fetcher.dart';
 import 'package:daily_horoscope/types/horoscope_types.dart';
 import 'package:daily_horoscope/types/signs.dart';
+import 'package:daily_horoscope/widgets/common_ui.dart';
 import 'package:daily_horoscope/widgets/components/sub-components/scrollable_text_display.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,63 @@ class _MonthlyDisplayState extends State<MonthlyDisplay> {
         }
         MonthlyDisplayDTO display = snapshot.data as MonthlyDisplayDTO? ?? nullFallbackMonthly();
 
-        return scrollableText(display.horoscope_data);
+        return Expanded(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0, bottom: 4.0),
+                child: Column(
+                  spacing: 8,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 60,
+                      decoration: commonBoxDecoration(),
+                      padding: EdgeInsets.all(16),
+                      child: Text(display.month, textAlign: TextAlign.center, style: TextStyle(fontSize: 15, color: Colors.amberAccent),),
+                    ),
+                    Row(
+                      spacing: 2,
+                      children: [
+                        Container(
+                          width: 182,
+                          height: 35,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.amberAccent,
+                              width: 3
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                            shape: BoxShape.rectangle,
+                            color: commonTextBgColour()
+                          ),
+                          padding: EdgeInsets.all(4),
+                          child: Text("Challenging days: ${display.challenging_days}", textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Colors.amberAccent),),
+                        ),
+                        Container(
+                          width: 182,
+                          height: 35,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.amberAccent,
+                              width: 3
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                            shape: BoxShape.rectangle,
+                            color: commonTextBgColour()
+                          ),
+                          padding: EdgeInsets.all(4),
+                          child: Text("Standout days: ${display.standout_days}", textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Colors.amberAccent),),
+                        ),                        
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              ScrollableText(text: display.horoscope_data),
+            ],
+          ),
+        );
       },
     );
   }

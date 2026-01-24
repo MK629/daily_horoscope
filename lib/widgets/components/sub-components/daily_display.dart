@@ -1,6 +1,7 @@
 import 'package:daily_horoscope/fetcher/fetcher.dart';
 import 'package:daily_horoscope/types/horoscope_types.dart';
 import 'package:daily_horoscope/types/signs.dart';
+import 'package:daily_horoscope/widgets/common_ui.dart';
 import 'package:daily_horoscope/widgets/components/sub-components/scrollable_text_display.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,23 @@ class _DailyDisplayState extends State<DailyDisplay> {
         }
         DailyDisplayDTO display = snapshot.data as DailyDisplayDTO? ?? nullFallbackDaily();
         
-        return scrollableText(display.horoscope_data);
+        return Expanded(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 60,
+                  decoration: commonBoxDecoration(),
+                  padding: EdgeInsets.all(16),
+                  child: Text("Today's Date: ${display.date}", textAlign: TextAlign.center, style: TextStyle(fontSize: 15, color: Colors.amberAccent),),
+                ),
+              ),
+              ScrollableText(text: display.horoscope_data),
+            ],
+          ),
+        );
       },
     );
   }

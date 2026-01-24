@@ -53,6 +53,6 @@ class MonthlyDisplayDTO extends DisplayDTO{
   const MonthlyDisplayDTO( { required this.challenging_days, required this.month, required this.standout_days, required super.horoscope_data});
 }
 
-DailyDisplayDTO nullFallbackDaily() => DailyDisplayDTO(date: "Null", horoscope_data: "Null");
-WeeklyDisplayDTO nullFallbackWeekly() => WeeklyDisplayDTO(week: "Null", horoscope_data: "Null");
-MonthlyDisplayDTO nullFallbackMonthly() => MonthlyDisplayDTO(challenging_days: "Null", month: "Null", standout_days: "Null", horoscope_data: "Null");
+DailyDisplayDTO nullFallbackDaily() => DailyDisplayDTO(date: "", horoscope_data: "");
+WeeklyDisplayDTO nullFallbackWeekly() => WeeklyDisplayDTO(week: "", horoscope_data: "");
+MonthlyDisplayDTO nullFallbackMonthly() => MonthlyDisplayDTO(challenging_days: "", month: "", standout_days: "", horoscope_data: "");
