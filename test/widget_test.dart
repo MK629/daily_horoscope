@@ -6,13 +6,14 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:daily_horoscope/main.dart';
+import 'package:daily_horoscope/types/signs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const HoroscopeApp());
+    await tester.pumpWidget(const HoroscopeApp(cachedSign: Sign.Aquarius,));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

@@ -2,6 +2,7 @@ import 'package:daily_horoscope/fetcher/fetcher.dart';
 import 'package:daily_horoscope/types/horoscope_types.dart';
 import 'package:daily_horoscope/types/signs.dart';
 import 'package:daily_horoscope/widgets/common_ui.dart';
+import 'package:daily_horoscope/widgets/components/sub-components/loading.dart';
 import 'package:daily_horoscope/widgets/components/sub-components/scrollable_text_display.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +40,7 @@ class _DailyDisplayState extends State<DailyDisplay> {
       future: display, 
       builder: (context, snapshot){
         if(snapshot.connectionState == ConnectionState.waiting){
-          return CircularProgressIndicator();
+          return Loading();
         }
         DailyDisplayDTO display = snapshot.data as DailyDisplayDTO? ?? nullFallbackDaily();
         

@@ -1,5 +1,6 @@
 import 'package:daily_horoscope/types/horoscope_types.dart';
 import 'package:daily_horoscope/types/signs.dart';
+import 'package:daily_horoscope/widgets/common_ui.dart';
 import 'package:daily_horoscope/widgets/components/sub-components/daily_display.dart';
 import 'package:daily_horoscope/widgets/components/sub-components/monthly_display.dart';
 import 'package:daily_horoscope/widgets/components/sub-components/weekly_display.dart';
@@ -47,6 +48,22 @@ class HoroscopeDisplayState extends State<HoroscopeDisplay> {
           ], 
           selected: {horoscopeType}, //{} means Set, SegmentedButton puts everything into Set to be flexible for single, multi or zero select.
           onSelectionChanged: (newSelection) => setState(() => horoscopeType = newSelection.first),
+          showSelectedIcon: false,
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(commonTextBgColour()),
+            foregroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
+                return Colors.amberAccent;
+              }
+              return Colors.white;
+            }),
+            shape: WidgetStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            side: WidgetStatePropertyAll(BorderSide(color: Colors.amberAccent, width: 2))
+          ),
         ),
         horoscopeDisplay
       ],
